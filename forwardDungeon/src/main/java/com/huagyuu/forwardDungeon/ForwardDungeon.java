@@ -1240,8 +1240,15 @@ public class ForwardDungeon {
         System.out.println("输入要出售的数量(整数)和单位，用空格分隔，如 \"10 g\"");
         String s = scanner.nextLine();
         String[] strings = s.split(" ");
-        int num = Integer.parseInt(strings[0]);
-        String unitName = strings[1];
+        int num = 0;
+        String unitName = null;
+        try {
+            num = Integer.parseInt(strings[0]);
+            unitName = strings[1];
+        } catch (Exception e) {
+            errorPrint("输入格式错误");
+            return;
+        }
 
         if (num <= 0) {
             errorPrint("数量无效");
@@ -1434,8 +1441,15 @@ public class ForwardDungeon {
         System.out.println("输入要购买的数量(整数)和单位，用空格分隔，如 \\\"10 g\\\"\"");
         String line = scanner.nextLine();
         String[] strings = line.split(" ");
-        int num = Integer.parseInt(strings[0]);
-        String unitName = strings[1];
+        int num = 0;
+        String unitName = null;
+        try {
+            num = Integer.parseInt(strings[0]);
+            unitName = strings[1];
+        } catch (Exception e) {
+            errorPrint("输入格式错误");
+            return;
+        }
 
         if (num <= 0) {
             errorPrint("数量无效");
