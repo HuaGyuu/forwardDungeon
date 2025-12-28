@@ -1,0 +1,13 @@
+# IDEA 专属配置文件，必忽略
+.idea/
+*.iml
+out/
+target/
+
+# 系统缓存文件
+.DS_Store
+Thumbs.db
+
+# Java 项目可选（Maven/Gradle 编译产物）
+build/
+logs/
