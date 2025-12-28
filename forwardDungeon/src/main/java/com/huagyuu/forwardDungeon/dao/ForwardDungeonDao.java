@@ -28,7 +28,7 @@ import java.util.Random;
  */
 public class ForwardDungeonDao {
     public static void saveHeroMines(List<HeroMine> heroMineList) {
-        String path = "heroMines.txt";
+        String path = "data/heroMines.txt";
 
         try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(path))){
             for (HeroMine heroMine : heroMineList) {
@@ -47,7 +47,7 @@ public class ForwardDungeonDao {
     }
 
     public static void saveHeroInfo(Hero hero) {
-        String path = "heroInfo.txt";
+        String path = "data/heroInfo.txt";
 
         try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(path))){
             Weapon weapon = hero.getWeapon();
@@ -119,7 +119,7 @@ public class ForwardDungeonDao {
     }
 
     public static void saveNumWeapons(List<NumWeapon> numWeapons) {
-        String path = "numWeapons.txt";
+        String path = "data/numWeapons.txt";
 
         try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(path))){
             for (NumWeapon numWeapon : numWeapons) {
@@ -142,7 +142,7 @@ public class ForwardDungeonDao {
     }
 
     public static void saveNumArmors(List<NumArmor> numArmors) {
-        String path = "numArmors.txt";
+        String path = "data/numArmors.txt";
 
         try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(path))){
             for (NumArmor numArmor : numArmors) {
@@ -167,7 +167,7 @@ public class ForwardDungeonDao {
 
     public static Hero loadHero() {
         Hero hero = null;
-        String path = "heroInfo.txt";
+        String path = "data/heroInfo.txt";
         String line;
 
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(path))){
@@ -250,7 +250,7 @@ public class ForwardDungeonDao {
 
     public static List<HeroMine> loadHeroMines() {
         ArrayList<HeroMine> heroMines = new ArrayList<>();
-        String path = "heroMines.txt";
+        String path = "data/heroMines.txt";
 
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(path))){
             String line;
@@ -275,7 +275,7 @@ public class ForwardDungeonDao {
     }
 
     public static List<NumWeapon> loadNumWeapons() {
-        String path = "numWeapons.txt";
+        String path = "data/numWeapons.txt";
         ArrayList<NumWeapon> numWeapons = new ArrayList<>();
 
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(path))){
@@ -295,7 +295,7 @@ public class ForwardDungeonDao {
     }
 
     public static List<NumArmor> loadNumArmors() {
-        String path = "numArmors.txt";
+        String path = "data/numArmors.txt";
         ArrayList<NumArmor> numArmors = new ArrayList<>();
 
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(path))){
@@ -319,7 +319,7 @@ public class ForwardDungeonDao {
     }
 
     public static void saveMineMachine(MineMachine machine) {
-        String path = "mineMachine.txt";
+        String path = "data/mineMachine.txt";
 
         try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(path))){
             String statement = machine.getLevel() + " " +
@@ -335,7 +335,7 @@ public class ForwardDungeonDao {
     }
 
     public static MineMachine loadMineMachine() {
-        String path = "mineMachine.txt";
+        String path = "data/mineMachine.txt";
         MineMachine machine = null;
 
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(path))){
@@ -358,7 +358,7 @@ public class ForwardDungeonDao {
     }
 
     public static void saveDungeon(Dungeon dungeon) {
-        String path = "dungeon.txt";
+        String path = "data/dungeon.txt";
 
         try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(path))){
             DungeonEvent event = dungeon.getDungeonEvent();
@@ -422,7 +422,7 @@ public class ForwardDungeonDao {
     }
 
     public static Dungeon loadDungeon() {
-        String path = "dungeon.txt";
+        String path = "data/dungeon.txt";
         Dungeon dungeon = null;
 
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(path))){
@@ -485,11 +485,11 @@ public class ForwardDungeonDao {
     public static EquipmentBox randomEquipmentBox() {
         Random random = new Random();
         if (random.nextInt(2) == 0) {
-            String path = "weaponOfEquipmentBox.txt";
+            String path = "data/weaponOfEquipmentBox.txt";
             Weapon weapon = randomGetWeaponByDungeonLayer(path, Dungeon.layer, random);
             return new EquipmentBox(weapon);
         } else {
-            String path = "armorOfEquipmentBox.txt";
+            String path = "data/armorOfEquipmentBox.txt";
             Armor armor = randomGetArmorByDungeonLayer(path, Dungeon.layer, random);
             return new EquipmentBox(armor);
         }
@@ -564,7 +564,7 @@ public class ForwardDungeonDao {
     }
 
     public static List<Weapon> loadShopWeapons() {
-        String path = "weaponOfShop.txt";
+        String path = "data/weaponOfShop.txt";
         ArrayList<Weapon> weapons = new ArrayList<>();
 
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(path))){
@@ -581,7 +581,7 @@ public class ForwardDungeonDao {
     }
 
     public static List<Armor> loadShopArmors() {
-        String path = "armorOfShop.txt";
+        String path = "data/armorOfShop.txt";
         ArrayList<Armor> armors = new ArrayList<>();
 
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(path))){
@@ -598,7 +598,7 @@ public class ForwardDungeonDao {
     }
 
     public static List<BuildEquipment> loadWeaponOfBuildEquipments() {
-        String path = "weaponOfBuildEquipment.txt";
+        String path = "data/weaponOfBuildEquipment.txt";
         ArrayList<BuildEquipment> buildEquipments = new ArrayList<>();
 
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(path))){
@@ -617,7 +617,7 @@ public class ForwardDungeonDao {
     }
 
     public static List<BuildEquipment> loadArmorOfBuildEquipments() {
-        String path = "armorOfBuildEquipment.txt";
+        String path = "data/armorOfBuildEquipment.txt";
         ArrayList<BuildEquipment> buildEquipments = new ArrayList<>();
 
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(path))){
@@ -659,7 +659,7 @@ public class ForwardDungeonDao {
     }
 
     public static int loadTimeLength() {
-        String path = "timeLength.txt";
+        String path = "data/timeLength.txt";
 
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(path))){
             String line = bufferedReader.readLine();
@@ -673,7 +673,7 @@ public class ForwardDungeonDao {
     }
 
     public static void saveTimeLength(int timeLength) {
-        String path = "timeLength.txt";
+        String path = "data/timeLength.txt";
 
         try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(path))){
             String s = timeLength + "";

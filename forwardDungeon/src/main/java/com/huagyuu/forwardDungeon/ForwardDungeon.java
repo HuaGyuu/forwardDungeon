@@ -148,6 +148,7 @@ public class ForwardDungeon {
                     break;
                 case 2:
                     showLuckyDungeonMenu();
+                    break;
                 case -1:
                     return;
                 default:
@@ -1547,6 +1548,7 @@ public class ForwardDungeon {
                 case 1: showResourceReduceMenu();
                     break;
                 case 2: showMineMachineMenu();
+                    break;
                 case -1: return;
                 default:
                     errorPrint("数字错误");
