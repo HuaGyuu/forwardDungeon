@@ -35,12 +35,34 @@ public class ForwardDungeon {
     private static MineMachine machine;
     private static Hero hero;
     public static Dungeon dungeon;
+    public static int timeLength;
 
     public static void main(String[] args) {
         loadHero();
         loadMineMachine();
         dungeon = ForwardDungeonDao.loadDungeon();
+        loadTimeLength();
         showMainMenu();
+    }
+
+    private static void loadTimeLength() {
+        timeLength = ForwardDungeonDao.loadTimeLength();
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (true) {
+                    try {
+                        Thread.sleep(1000);
+                        timeLength++;
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            }
+        }, "时长线程");
+
+        thread.setDaemon(true);
+        thread.start();
     }
 
     private static void loadHero() {
@@ -108,6 +130,7 @@ public class ForwardDungeon {
         ForwardDungeonDao.saveNumArmors(warehouse.getNumArmors());
         ForwardDungeonDao.saveMineMachine(machine);
         ForwardDungeonDao.saveDungeon(dungeon);
+        ForwardDungeonDao.saveTimeLength(timeLength);
     }
 
     private static void showExploreDungeonMenu() {
@@ -1619,7 +1642,18 @@ public class ForwardDungeon {
     }
 
     private static void showGameName() {
-        System.out.println("============前进地牢============");
+        String finalTimeLength;
+        // 小于 1 小时
+        if (timeLength < 60 * 60) {
+            int minutes = timeLength / 60;
+            finalTimeLength = "     游戏时长：" + minutes + " 分钟";
+        } else {
+            int hours = timeLength / 60 / 60;
+            int temp = timeLength - (hours * 60 * 60);
+            int  minutes = temp / 60;
+            finalTimeLength = "     游戏时长：" + hours + " 小时 " + minutes +" 分钟";
+        }
+        System.out.println("============前进地牢============" + finalTimeLength);
     }
 
     private static void showPartName(String partName) {

@@ -658,4 +658,29 @@ public class ForwardDungeonDao {
         return buildEquipments;
     }
 
+    public static int loadTimeLength() {
+        String path = "timeLength.txt";
+
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(path))){
+            String line = bufferedReader.readLine();
+
+            return Integer.parseInt(line);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return 0;
+    }
+
+    public static void saveTimeLength(int timeLength) {
+        String path = "timeLength.txt";
+
+        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(path))){
+            String s = timeLength + "";
+            bufferedWriter.write(s);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 }
