@@ -144,7 +144,6 @@ public class MineMachine implements Runnable{
             case "t":
                 mineUnit = MineUnit.KILOTON;
                 break;
-                // TODO
             case "kt":
                 mineUnit = MineUnit.KILOGRAM;
                 break;
