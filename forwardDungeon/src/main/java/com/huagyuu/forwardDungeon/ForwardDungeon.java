@@ -47,13 +47,19 @@ public class ForwardDungeon {
 
     private static void loadTimeLength() {
         timeLength = ForwardDungeonDao.loadTimeLength();
+        if (timeLength == 0) {
+            timeLength = 1;
+            ForwardDungeonDao.saveTimeLength(timeLength);
+            initializeGame();
+        }
+
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
                 while (true) {
                     try {
-                        Thread.sleep(1000);
-                        timeLength++;
+                        Thread.sleep(5000);
+                        timeLength += 5;
                     } catch (InterruptedException e) {
                         throw new RuntimeException(e);
                     }
@@ -63,6 +69,15 @@ public class ForwardDungeon {
 
         thread.setDaemon(true);
         thread.start();
+    }
+
+    private static void initializeGame() {
+        System.out.println("这是一个名为前进地牢的控制台挂机小游戏。\n" +
+                "游戏目标是获得更强力的装备，通过更高层的地牢\n" +
+                "更详细的信息见游戏内的说明\n" +
+                "输入任意数字以继续....");
+
+        inputInt();
     }
 
     private static void loadHero() {
@@ -1646,12 +1661,12 @@ public class ForwardDungeon {
     private static void showGameName() {
         String finalTimeLength;
         // 小于 1 小时
-        if (timeLength < 60 * 60) {
+        if (timeLength < 3600) {
             int minutes = timeLength / 60;
             finalTimeLength = "     游戏时长：" + minutes + " 分钟";
         } else {
-            int hours = timeLength / 60 / 60;
-            int temp = timeLength - (hours * 60 * 60);
+            int hours = timeLength / 3600;
+            int temp = timeLength - (hours * 3600);
             int  minutes = temp / 60;
             finalTimeLength = "     游戏时长：" + hours + " 小时 " + minutes +" 分钟";
         }
